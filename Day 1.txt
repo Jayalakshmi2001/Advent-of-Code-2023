@@ -1,24 +1,32 @@
-//Day 1
+//DAY1 PART-1
 
+package AdventOfCode;
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 public class calibrationDocument 
 {
     public static void main(String args[]) 
     {
-        String Document="1abc2\npqr3stu8vwx\na1b2c3d4e5f\ntreb7uchet";
-        int result=sumOfCalibrationValues(Document);
-        System.out.println(result);
-    }
-    
-    public static int sumOfCalibrationValues(String Document)
-    {
-        String[] words=Document.split("\n");
+    	String filename="Day1Input.txt";
+    	try
+    	{
+		BufferedReader br=new BufferedReader(new FileReader(filename));
         int sum=0;
-        for(String word:words)
+        for(String word:br.lines().toList())
         {
             sum=sum+getCalibrationValue(word);
         }
-        return sum;
+        System.out.println(sum);
+    	}
+    	
+    	catch(IOException e)
+    	{
+    		e.printStackTrace();
+    	}
     }
+   
     
     public static int getCalibrationValue(String word)
     {
