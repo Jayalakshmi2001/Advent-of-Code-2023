@@ -1,0 +1,55 @@
+//Day 1
+
+public class calibrationDocument 
+{
+    public static void main(String args[]) 
+    {
+        String Document="1abc2\npqr3stu8vwx\na1b2c3d4e5f\ntreb7uchet";
+        int result=sumOfCalibrationValues(Document);
+        System.out.println(result);
+    }
+    
+    public static int sumOfCalibrationValues(String Document)
+    {
+        String[] words=Document.split("\n");
+        int sum=0;
+        for(String word:words)
+        {
+            sum=sum+getCalibrationValue(word);
+        }
+        return sum;
+    }
+    
+    public static int getCalibrationValue(String word)
+    {
+        char firstDigit=getFirstDigit(word);
+        char lastDigit=getLastDigit(word);
+        int calibrationValue=Integer.parseInt(""+firstDigit+lastDigit);
+        return calibrationValue;
+    }
+    
+    public static char getFirstDigit(String word)
+    {
+        for(char ch:word.toCharArray())
+        {
+            if(Character.isDigit(ch))
+            {
+                return ch;
+            }
+        }
+        return 0;
+    }
+    
+    public static char getLastDigit(String word)
+    {
+        for(int i=word.length()-1;i>=0;i--)
+        {
+            char ch=word.charAt(i);
+            if(Character.isDigit(ch))
+            {
+                return ch;
+            }
+        }
+        return 0;
+    }
+}
